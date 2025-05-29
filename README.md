@@ -27,7 +27,7 @@
 ### 一键安装命令
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/lansepeach/SSH_Key_Installer/refs/heads/master/key-cn-2.sh) [选项...]
+ curl -fsSL https://raw.githubusercontent.com/lansepeach/SSH_Key_Installer/refs/heads/master/key-cn-2.sh -o key-cn-2.sh && chmod +x key-cn-2.sh && ./key-cn-2.sh  [- 选项...]
 ```
 
 ---
@@ -47,7 +47,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/lansepeach/SSH_Key_Installer
 
 ---
 
-## 🧪 示例用法
+## 🧪 示例用法（推荐下载到本地在本地运行）
 
 ```bash
 # 从 GitHub 安装并每 5 分钟更新
