@@ -211,7 +211,7 @@ disable_password() {
             RESTART_SSHD=0 # Should be 0 if failed
             echo -e "${ERROR} 禁用密码登录失败!"
             exit 1
-        }
+        fi
     fi
 }
 
