@@ -1,4 +1,4 @@
-# Key CN SSH 公钥自动更新脚本
+# Key CN SSH 公钥自动更新脚本（AI重构）
 
 [![License: MIT](https://img.shields.io/github/license/P3TERX/SSH_Key_Installer?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/yourname/key-cn-ssh-installer?style=flat-square)](https://github.com/yourname/key-cn-ssh-installer/stargazers)
