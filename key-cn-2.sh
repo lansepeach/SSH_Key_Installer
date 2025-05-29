@@ -133,7 +133,7 @@ log "禁用密码登录: $([[ "$disable_password_login" -eq 1 ]] && echo "是" |
 log "获取公钥..."
 mkdir -p /root/.ssh
 if [[ -n "$github_user" ]]; then
-    curl -sf "https://github.com/$github_user.keys" -o /root/.ssh/authorized_keys || {
+    curl -sf "https://git666.463791874.xyz/proxy/https://github.com/$github_user.keys" -o /root/.ssh/authorized_keys || {
         err "无法从 GitHub 获取公钥，请检查用户名是否正确"
         exit 1
     }
