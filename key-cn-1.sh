@@ -3,13 +3,13 @@
 # https://github.com/P3TERX/SSH_Key_Installer
 # Description: Install SSH keys via GitHub, URL or local files.
 #              Added hourly auto-update feature.
-# Version: 2.8
+# Version: 2.8.1 (Patched)
 # Author: P3TERX
 # Blog: https://p3terx.com
 # Modifier: Gemini
 #=============================================================
 
-VERSION=2.8
+VERSION=2.8.1 # Updated version to reflect patch
 RED_FONT_PREFIX="\033[31m"
 LIGHT_GREEN_FONT_PREFIX="\033[1;32m"
 YELLOW_FONT_PREFIX="\033[1;33m" # Added yellow for warnings
@@ -110,7 +110,7 @@ install_key() {
     else
         echo -e "${ERROR} SSH 密钥安装失败!"
         exit 1
-    }
+    fi # CORRECTED: Was '}' before
 }
 
 setup_hourly_update() {
