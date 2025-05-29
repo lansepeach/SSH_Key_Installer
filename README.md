@@ -8,7 +8,7 @@
 
 ## 📖 教程（中文）
 
-详见：[博客链接或文档链接](https://example.com/your-blog-post)
+详见：[无效演示链接博客链接或文档链接](https://example.com/your-blog-post)
 
 ---
 
@@ -27,7 +27,7 @@
 ### 一键安装命令
 
 ```bash
-bash <(curl -fsSL https://yourdomain.com/key-cn-2.sh) [选项...]
+bash <(curl -fsSL https://raw.githubusercontent.com/lansepeach/SSH_Key_Installer/refs/heads/master/key-cn-2.sh) [选项...]
 ```
 
 ---
