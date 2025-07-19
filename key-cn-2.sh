@@ -169,6 +169,10 @@ if [[ -n "$ssh_port" ]]; then
     sed -i "s/^#Port .*/Port $ssh_port/;s/^Port .*/Port $ssh_port/" "$sshd_config" || echo "Port $ssh_port" >> "$sshd_config"
     log "SSH端口更改为 $ssh_port"
 fi
+# 启用公钥登录
+sed -i "s/^#PubkeyAuthentication .*/PubkeyAuthentication yes/;s/^PubkeyAuthentication .*/PubkeyAuthentication yes/" "$sshd_config"
+log "启用 SSH 公钥登录"
+
 if [[ "$disable_password_login" -eq 1 ]]; then
     sed -i "s/^#PasswordAuthentication .*/PasswordAuthentication no/;s/^PasswordAuthentication .*/PasswordAuthentication no/" "$sshd_config"
     log "禁用 SSH 密码登录"
