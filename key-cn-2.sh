@@ -2,10 +2,10 @@
 
 # ==============================================================================
 #  SSH 公钥自动部署脚本 (适用于 GitHub 或远程链接公钥同步)
-#  作者：lansepeach
-#  日期：2025-05-30
+#  作者：lansepeach (已添加 PermitRootLogin 补丁)
+#  日期：2025-12-04
 #  功能：自动从 GitHub 或远程链接获取 SSH 公钥、设置 SSH 参数、添加定时任务更新密钥
-#  支持系统：Debian / Ubuntu
+#  支持系统：Debian / Ubuntu / CentOS
 #  版权：MIT License
 # ==============================================================================
 
@@ -165,14 +165,28 @@ if [[ ! -f "$backup_flag_file" ]]; then
     log "备份原 sshd_config 到 $backup_config"
 fi
 
+# 修改端口
 if [[ -n "$ssh_port" ]]; then
     sed -i "s/^#Port .*/Port $ssh_port/;s/^Port .*/Port $ssh_port/" "$sshd_config" || echo "Port $ssh_port" >> "$sshd_config"
     log "SSH端口更改为 $ssh_port"
 fi
+
 # 启用公钥登录
 sed -i "s/^#PubkeyAuthentication .*/PubkeyAuthentication yes/;s/^PubkeyAuthentication .*/PubkeyAuthentication yes/" "$sshd_config"
 log "启用 SSH 公钥登录"
 
+# ------------------------------------------------------------
+# [新增] 强制设置 PermitRootLogin 为 prohibit-password
+# ------------------------------------------------------------
+if grep -q "^#\?PermitRootLogin" "$sshd_config"; then
+    sed -i "s/^#\?PermitRootLogin.*/PermitRootLogin prohibit-password/" "$sshd_config"
+else
+    echo "PermitRootLogin prohibit-password" >> "$sshd_config"
+fi
+log "设置 Root 仅允许密钥登录 (PermitRootLogin prohibit-password)"
+# ------------------------------------------------------------
+
+# 禁用密码登录
 if [[ "$disable_password_login" -eq 1 ]]; then
     sed -i "s/^#PasswordAuthentication .*/PasswordAuthentication no/;s/^PasswordAuthentication .*/PasswordAuthentication no/" "$sshd_config"
     log "禁用 SSH 密码登录"
